@@ -1,4 +1,4 @@
-package com.sonu.androidarchitecture.model;
+package com.sonu.androidarchitecture.model.beans;
 
 public class ToDo {
     private long id;
@@ -33,6 +33,15 @@ public class ToDo {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    @Override
+    public String toString() {
+        return "ToDo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", place='" + place + '\'' +
+                '}';
     }
 }
 

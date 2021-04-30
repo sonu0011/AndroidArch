@@ -25,6 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sonu.androidarchitecture.R;
+
 import java.util.ArrayList;
 
 public class ContentProviderExample extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {

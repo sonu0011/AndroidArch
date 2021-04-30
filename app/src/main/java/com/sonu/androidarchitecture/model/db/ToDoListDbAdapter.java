@@ -1,4 +1,4 @@
-package com.sonu.androidarchitecture.db;
+package com.sonu.androidarchitecture.model.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.sonu.androidarchitecture.model.ToDo;
+import com.sonu.androidarchitecture.model.beans.ToDo;
 
 import java.util.ArrayList;
 import java.util.List;
