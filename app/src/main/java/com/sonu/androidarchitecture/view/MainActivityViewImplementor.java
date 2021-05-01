@@ -24,7 +24,7 @@ import com.sonu.androidarchitecture.view.adapters.ToDoAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivityViewImplementor implements MVCMainActivityView, ToDoAdapter.ListItemClickListener {
+public class MainActivityViewImplementor implements MVCMainActivityView, MVCListItemView.ListItemClickListener {
     private final View rootView;
 
     private final MVCModelImplementor mvcModel;
@@ -99,7 +99,7 @@ public class MainActivityViewImplementor implements MVCMainActivityView, ToDoAda
 
 
     private void clearListView() {
-        toDoAdapter = new ToDoAdapter(rootView.getContext(), new ArrayList<ToDo>(), this);
+        toDoAdapter = new ToDoAdapter(rootView.getContext(), new ArrayList<>(), this);
         recyclerView.setAdapter(toDoAdapter);
     }
 

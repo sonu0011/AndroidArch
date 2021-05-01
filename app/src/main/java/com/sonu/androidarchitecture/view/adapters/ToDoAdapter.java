@@ -11,21 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sonu.androidarchitecture.R;
 import com.sonu.androidarchitecture.model.beans.ToDo;
+import com.sonu.androidarchitecture.view.MVCListItemView;
+import com.sonu.androidarchitecture.view.ToDoListItemMVCImpl;
 
 import java.util.List;
 
 
-public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewViewHolder> {
+public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewViewHolder> implements MVCListItemView.ListItemClickListener {
 
     private Context context;
     private List<ToDo> todos;
-    ListItemClickListener listItemClickListener;
+    MVCListItemView.ListItemClickListener listItemClickListener;
 
-    public interface ListItemClickListener {
-        void onItemClicked(long position);
-    }
-
-    public ToDoAdapter(Context context, List<ToDo> toDos, ListItemClickListener listItemClickListener) {
+    public ToDoAdapter(Context context, List<ToDo> toDos, MVCListItemView.ListItemClickListener listItemClickListener) {
         this.context = context;
         this.todos = toDos;
         this.listItemClickListener = listItemClickListener;
@@ -34,25 +32,17 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewViewHo
     @Override
     public ToDoAdapter.ToDoViewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.todo_row_item, parent, false);
+        ToDoListItemMVCImpl toDoListItemMVC = new ToDoListItemMVCImpl((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE), parent);
+        toDoListItemMVC.initViews();
+        toDoListItemMVC.setListItemClickListener(this);
+        return new ToDoViewViewHolder(toDoListItemMVC);
 
-        return new ToDoViewViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ToDoAdapter.ToDoViewViewHolder holder, final int position) {
         final ToDo toDo = todos.get(position);
-        holder.textViewId.setText("Id: " + toDo.getId());
-        holder.textViewToDo.setText("To Do: " + toDo.getName());
-        holder.textViewPlace.setText("Place: " + toDo.getPlace());
-        holder.layoutContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listItemClickListener != null) {
-                    listItemClickListener.onItemClicked(toDo.getId());
-                }
-            }
-        });
+        holder.listItemMVC.bindDataToView(toDo);
     }
 
     @Override
@@ -65,19 +55,19 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewViewHo
         return todos.size();
     }
 
-    class ToDoViewViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onItemClicked(long position) {
+        listItemClickListener.onItemClicked(position);
+    }
 
-        public LinearLayout layoutContainer;
-        public TextView textViewId, textViewToDo, textViewPlace;
+    static class ToDoViewViewHolder extends RecyclerView.ViewHolder {
 
-        public ToDoViewViewHolder(View view) {
-            super(view);
-            layoutContainer = (LinearLayout) view.findViewById(R.id.layoutContainer);
-            textViewId = (TextView) view.findViewById(R.id.textViewId);
-            textViewToDo = (TextView) view.findViewById(R.id.textViewToDo);
-            textViewPlace = (TextView) view.findViewById(R.id.textViewPlace);
+        private ToDoListItemMVCImpl listItemMVC;
+
+        public ToDoViewViewHolder(ToDoListItemMVCImpl view) {
+            super(view.getRootView());
+            listItemMVC = view;
         }
-
 
     }
 }
