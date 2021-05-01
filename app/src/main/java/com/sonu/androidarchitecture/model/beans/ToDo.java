@@ -43,6 +43,20 @@ public class ToDo {
                 ", place='" + place + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ToDo) {
+            ToDo temp = (ToDo) obj;
+            if (temp.id == this.id) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package com.sonu.androidarchitecture.model;
 
+import com.sonu.androidarchitecture.exception.ToDoNotFoundException;
 import com.sonu.androidarchitecture.model.beans.ToDo;
 import com.sonu.androidarchitecture.model.db.ToDoListDbAdapter;
 
@@ -81,5 +82,19 @@ public class MVCModelImplementor implements MVCModel {
     private void refresh() {
         toDoList.clear();
         toDoList = adapter.getAlltoDos();
+    }
+
+    public ToDo getToDo(long id) throws Exception{
+        ToDo toDo = null;
+        for(ToDo toDo1: toDoList){
+            if(toDo1.getId()==id){
+                toDo = toDo1;
+                break;
+            }
+        }
+        if(toDo==null){
+            throw new ToDoNotFoundException("Id is wrong");
+        }
+        return toDo;
     }
 }

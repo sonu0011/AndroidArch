@@ -15,6 +15,8 @@ import com.sonu.androidarchitecture.R;
 import com.sonu.androidarchitecture.model.db.ToDoListDbAdapter;
 import com.sonu.androidarchitecture.model.beans.ToDo;
 import com.sonu.androidarchitecture.view.MVCMainActivityView;
+import com.sonu.androidarchitecture.view.MVCView;
+import com.sonu.androidarchitecture.view.MVCViewFactory;
 import com.sonu.androidarchitecture.view.MainActivityViewImplementor;
 
 import java.util.ArrayList;
@@ -22,12 +24,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    MainActivityViewImplementor mvcView;
+    MVCView mvcView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mvcView = new MainActivityViewImplementor(this, null);
+        mvcView = MVCViewFactory.getMVCView(MVCViewFactory.VIEW_TYPE.MAIN_VIEW_TYPE, MainActivity.this, null, null);
         setContentView(mvcView.getRootView());
         mvcView.initViews();
     }

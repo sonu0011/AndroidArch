@@ -13,4 +13,7 @@ public interface MVCModel {
     public boolean removeToDoItem(int id) throws Exception;
 
     public boolean updateToDoItem(int id, String newToDoValue) throws Exception;
+
+    public ToDo getToDo(long id) throws Exception;
+
 }
