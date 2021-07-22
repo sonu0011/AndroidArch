@@ -1,6 +1,7 @@
 package com.sonu.androidarchitecture;
 
 import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -13,7 +14,7 @@ import com.sonu.androidarchitecture.db.ToDoListDbAdapter;
 
 public class TodoContentProvider extends ContentProvider {
 
-    public static final String AUTHORITY = "com.sonu.androidarchitecutre";
+    public static final String AUTHORITY = "com.sonu.androidarchitecutre1";
 
     public static final String PATH_TODO_LIST = "TODO_LIST";
     public static final String PATH_TODO_PLACE = "TODO_LIST_FORM_PLACE";
@@ -33,10 +34,32 @@ public class TodoContentProvider extends ContentProvider {
 
     public static final UriMatcher MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
+    //query is returning zero or more values
+    public static final String MIME_TYPE1 = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + "vnd.com.sonu.todos";
+    //query is returning one value
+    public static final String MIME_TYPE2 = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + "vnd.com.sonu.todos.place";
+    //application dependent query
+    public static final String MIME_TYPE3 = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + "vnd.com.sonu.todocount";
+
+
     static {
         MATCHER.addURI(AUTHORITY, PATH_TODO_LIST, TODO_LIST);
         MATCHER.addURI(AUTHORITY, PATH_TODO_PLACE, TODO_FROM_SPECIFIC_PLACE);
         MATCHER.addURI(AUTHORITY, PATH_TODO_COUNT, TODO_COUNT);
+    }
+
+    @Nullable
+    @Override
+    public String getType(@NonNull Uri uri) {
+        switch (MATCHER.match(uri)) {
+            case TODO_LIST:
+                return MIME_TYPE1;
+            case TODO_FROM_SPECIFIC_PLACE:
+                return MIME_TYPE2;
+            case TODO_COUNT:
+                return MIME_TYPE3;
+        }
+        return null;
     }
 
     @Override
@@ -66,11 +89,6 @@ public class TodoContentProvider extends ContentProvider {
         return cursor;
     }
 
-    @Nullable
-    @Override
-    public String getType(@NonNull Uri uri) {
-        return null;
-    }
 
     @Nullable
     @Override

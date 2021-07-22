@@ -19,6 +19,7 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -57,6 +58,9 @@ public class ContentProviderExample extends AppCompatActivity implements LoaderM
 
         userName = findViewById(R.id.userName);
         textView = findViewById(R.id.textView);
+        textView.setMovementMethod(new ScrollingMovementMethod());
+
+
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS}, 121);
 
 //        Cursor cursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,
@@ -114,7 +118,7 @@ public class ContentProviderExample extends AppCompatActivity implements LoaderM
 //                }
 //                phones.close();
 
-                stringBuilder.append(cursor.getString(0) + " " + cursor.getString(1) + "  " + cursor.getString(2) + "  " + cursor.getString(3) + "\n");
+                stringBuilder.append(cursor.getString(0)).append(" ").append(cursor.getString(1)).append("  ").append(cursor.getString(2)).append("  ").append(cursor.getString(3)).append("\n");
 
 
             }

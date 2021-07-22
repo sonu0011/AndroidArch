@@ -1,63 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ContentProviderExample">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="loadData"
-        android:text="Load Data" />
-
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:textStyle="italic" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ContentProviderExample">
 
-    <EditText
-        android:layout_margin="10dp"
-        android:id="@+id/userName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User Name"
-        android:padding="10dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="loadData"
+            android:text="Load Data" />
 
-    <LinearLayout
-        android:padding="5dp"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/remove"
-            android:layout_width="wrap_content"
-            android:text="Remove"
-            android:layout_margin="5dp"
-            android:onClick="remove"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/update"
-            android:layout_width="wrap_content"
-            android:text="Update"
-            android:onClick="update"
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/add"
-            android:onClick="add"
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:text="Add"
-            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:scrollbars = "vertical"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="italic" />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User Name"
+            android:padding="10dp" />
+
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/remove"
+                android:layout_width="wrap_content"
+                android:text="Remove"
+                android:layout_margin="5dp"
+                android:onClick="remove"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/update"
+                android:layout_width="wrap_content"
+                android:text="Update"
+                android:onClick="update"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/add"
+                android:onClick="add"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:text="Add"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>

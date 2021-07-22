@@ -110,6 +110,7 @@ public class ToDoListDbAdapter {
             list.add(toDo);
         }
 
+        if (cursor != null) cursor.close();
         return list;
 
 

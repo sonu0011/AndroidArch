@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidArchitecture">
         <activity android:name=".ContentProviderExample">
+
+        </activity>
+        <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +24,11 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".MainActivity">
 
-        </activity>
+        <provider
+            android:name=".TodoContentProvider"
+            android:authorities="com.sonu.androidarchitecutre1"
+            android:exported="true" />
     </application>
 
 </manifest>
